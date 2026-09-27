@@ -5,20 +5,19 @@ import { useState } from "react"
 import { useEffect } from "react"
 
 export default function Layout(){
-  const [contagemSegundos,setContagemSegundos] = useState(0)
-  const [contagemMilisegundos,setContagemMilisegundos] = useState(0)
+  const [timer,setTimer] = useState(0)
+  const segundos = Math.floor(timer / 100)
+  const centesimos = timer %  100
+
   const [AtivaçãoTimer,setAtivaçãoTimer] = useState(false)
   const [textoDoPause, setTextoDoPause] = useState('Iniciar')
   const [corDoTexto, setCordoTexto] = useState('text-white')
   const [tailwindButaoPause,setTailwindButaoPause] = useState('bg-green-500 text-black')
 
-  function adicionarContagem(){
-    setContagemSegundos((ValorAtual)=> ValorAtual + 1 )
-  }
+
   function zerarContagem(){
 
-    setContagemSegundos(0)
-    setContagemMilisegundos(0)
+    setTimer(0)
     setTextoDoPause('Iniciar')
     setCordoTexto('text-white')
     setTailwindButaoPause('bg-green-500 text-black')
@@ -49,15 +48,8 @@ export default function Layout(){
   }
 
   const intervalo = setInterval(()=> {
-    setContagemMilisegundos((ValorAtual)=> {
-      if (ValorAtual <= 99){
-       return ValorAtual + 1
-      }
-      else{
-        adicionarContagem()
-       return 0
-      }
-    })
+    setTimer((ValorAtual)=> ValorAtual + 1
+    )
   },10)
 
   return () => {
@@ -72,8 +64,8 @@ export default function Layout(){
     <div className='text-white border-2 border-white-900'>
       <h1>Timer</h1>
   <p className={corDoTexto}>
-    {contagemSegundos.toString().padStart(2, '0')}:
-    {contagemMilisegundos.toString().padStart(2, '0')}
+    {segundos.toString().padStart(2,'0')}:
+    {centesimos.toString().padStart(2,'0')}
   </p>
       <button onClick={zerarContagem} className="bg-gray-700">Zerar</button>
       <button className={tailwindButaoPause}onClick={pausarDespausar}>{textoDoPause}</button>
