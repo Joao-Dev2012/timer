@@ -6,7 +6,7 @@ import { useEffect } from "react"
 
 export default function Layout(){
   const [timer,setTimer] = useState(0)
-  const minutos = Math.floor(timer / 6000) & 60
+  const minutos = Math.floor(timer / 6000)
   const segundos = Math.floor(timer / 100) % 60
   const centesimos = timer %  100
 
