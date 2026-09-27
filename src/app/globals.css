@@ -1,23 +1,31 @@
 @import "tailwindcss";
+@font-face {
+    font-family: "Wildeast";
+    src: url("/Fontes/The Wildeast.ttf") format("truetype"); 
+}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+.fontes{
+    font-family: 'Wildeast';
+}
 body{
     display: grid;
     min-height: 100dvh;
     place-items: center;
-    background: black;
+    background: 
+    linear-gradient(to right bottom, rgb(20, 95, 20) 50%,rgb(124, 15, 15) 50%);
 
 }
 div{
     width: 300px;
     aspect-ratio: 1 / 1;
-    background-color: rgb(15, 15, 19);
     display: grid;
     padding: 20px;
     border-radius: 5px;
+    background: black;
     gap: 10px;
     text-align: center;
 }

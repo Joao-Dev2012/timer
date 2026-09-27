@@ -14,11 +14,11 @@ export default function Layout(){
 
   const textoDoPause = AtivaçãoTimer ? 'Pausar' : 'Iniciar'  
   const tailwindButaoPause = AtivaçãoTimer
-  ? 'bg-red-500 text-white'
-  : 'bg-green-500 text-black'
+  ? 'bg-red-500 text-white border-2 border-white'
+  : 'bg-green-500 text-black border-2 border-white'
   const corDoTexto = AtivaçãoTimer
-  ? 'text-green-500'
-  : 'text-white'
+  ? 'text-green-500 text-5xl'
+  : 'text-white text-5xl'
 
   function apertarTecla(event: KeyboardEvent){
     const elemento = event.target as HTMLElement
@@ -79,12 +79,11 @@ useEffect(() => {
   return(
     <>
     <div className='text-white border-2 border-white-900'>
-      <h1>Timer</h1>
-  <p className={corDoTexto}>
-
+      <h1 className="fontes text-3xl">Timer</h1>
+  <p className={`${corDoTexto} fontes`}>
    {minutos.toString().padStart(2,'0')} : {segundos.toString().padStart(2,'0')} : {centesimos.toString().padStart(2,'0')}
   </p>
-      <button onClick={zerarContagem} className="bg-gray-700">Zerar</button>
+      <button onClick={zerarContagem} className=" bg-gray-700">Zerar</button>
       <button className={tailwindButaoPause}onClick={pausarDespausar}>{textoDoPause}</button>
       <p>Press Space or Enter to Start</p>
       <p>Press BackSpace to reset</p>
