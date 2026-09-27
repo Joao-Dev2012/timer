@@ -7,14 +7,12 @@ import { useEffect } from "react"
 export default function Layout(){
   const [contagemAtual,setContagemAtual] = useState(0)
   const [AtivaçãoTimer,setAtivaçãoTimer] = useState(false)
-  const [PostivoNegativo,setPositivoNegativo] = useState(true)
   const [textoDoPause, setTextoDoPause] = useState('Iniciar')
   const [corDoTexto, setCordoTexto] = useState('text-white')
 
 
   function zerarContagem(){
-    setAtivaçãoTimer(false)
-    setPositivoNegativo(true)
+
     setContagemAtual(0)
     setTextoDoPause('Iniciar')
     setCordoTexto('text-white')
@@ -32,13 +30,6 @@ export default function Layout(){
       setTextoDoPause('Pausar')
     }
   }
-  //funcoes de auxilio
-  function Positivo(){
-    setPositivoNegativo(true)
-  }
-    function Negativo(){
-    setPositivoNegativo(false)
-  }
   //funcao Principal:
   useEffect(() => {
 
@@ -47,24 +38,14 @@ export default function Layout(){
   }
 
   const intervalo = setInterval(() => {
-
-    if (PostivoNegativo === true) {
-      setContagemAtual(valorAtual => valorAtual + 1)
-    } else {
-      const contagemReal = contagemAtual -1
-      if(contagemReal === -1){
-        zerarContagem()
-      }
-      setContagemAtual(valorAtual => valorAtual - 1)
-    }
-
+      setContagemAtual((ValorAtual)=> ValorAtual + 1)
   }, 1000)
 
   return () => {
     clearInterval(intervalo)
   }
 
-}, [AtivaçãoTimer, PostivoNegativo])
+}, [AtivaçãoTimer])
 
 
   return(
